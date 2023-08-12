@@ -17,5 +17,5 @@ app.get("/:universalURL", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`iNotebook backend listening at http://localhost:${port}`)
 })
