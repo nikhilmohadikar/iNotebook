@@ -1,12 +1,15 @@
-// rafce
-import React, { useContext } from 'react'
-import noteContext from '../context/notes/nodeContext'
+import React, { useContext, useEffect } from 'react'
+import noteContext from '../context/notes/nodeContext';
 import Noteitem from './Noteitems';
 import AddNote from './AddNote';
 
 const Notes = () => {
     const context = useContext(noteContext)
-    const { notes, addNote } = context;
+    const { notes, getNotes } = context;
+    useEffect(() => {
+        getNotes();
+    }, [])
+
     return (
         <>
             <AddNote />
