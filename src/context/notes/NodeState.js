@@ -21,120 +21,39 @@ const NoteState = (props) => {
             "tag": "Personal",
             "date": "2023-08-10T05:46:47.749Z",
             "__v": 0
-        },
-        {
-            "_id": "64d479c776270d13fd9685dfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c7762s70d13d9685dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776e270d135d9685dfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c77627w0d13d9685dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776270d13d9j685dfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479cw776270d13d9685dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776270d13d9685trdfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479cet776270d13d9685dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776270d13etd9685dfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776270det13d9685dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c77627et0d13d9685dfb",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.090Z",
-            "__v": 0
-        },
-        {
-            "_id": "64d479c776270d13d96hs85dff",
-            "user": "64d4513c6d02e4cae9003754",
-            "title": "My title",
-            "description": "Hello All set",
-            "tag": "Personal",
-            "date": "2023-08-10T05:46:47.749Z",
-            "__v": 0
         }
     ]
     const [notes, setNotes] = useState(notesInitial)
 
+    // Add a Note
+    const addNote = (title, description, tag) => {
+        // TODO : API Call
+        console.log("Adding a new note");
+        const data = {
+            "_id": "64d479c776270det13d9685dff",
+            "user": "64d4513c6d02e4cae9003754",
+            "title": title,
+            "description": description,
+            "tag": tag,
+            "date": "2023-08-10T05:46:47.749Z",
+            "__v": 0
+        }
+        setNotes(notes.concat(data))
+    }
+
+    // Delete a Note
+    const deleteNote = () => {
+
+    }
+
+    // Edit a Note
+    const editNote = () => {
+
+    }
+
+
     return (
-        <NoteContext.Provider value={{ notes, setNotes }}>
+        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
             {props.children}
         </NoteContext.Provider>
     )
