@@ -1,11 +1,24 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from './componant/Navbar';
+import Home from './componant/Home';
+import About from './componant/About';
+import NoteContext from './context/notes/NodeState';
 
 function App() {
   return (
-    <div className="App">
-      <h1>This is iNotebook Application</h1>
-      <p>This is my first project</p>
-    </div>
+    // <> This is the GHOST element.
+    <>
+      <NoteContext>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route exact path='/' element={<Home />}></Route>
+            <Route exact path='/about' element={<About />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </NoteContext>
+    </>
   );
 }
 
