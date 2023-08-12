@@ -4,6 +4,7 @@ import Navbar from './componant/Navbar';
 import Home from './componant/Home';
 import About from './componant/About';
 import NoteContext from './context/notes/NodeState';
+import Alert from './componant/Alert';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NoteContext>
         <BrowserRouter>
           <Navbar />
+          <Alert massage="This is a massage"/>
           <div className="container">
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
