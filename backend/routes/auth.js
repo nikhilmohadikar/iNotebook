@@ -14,20 +14,21 @@ router.post('/createuser', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password atleast must be a 5 character').isLength({ min: 5 })
 ], async (req, res) => {
+    let success = false;
     // when we write async function it will execue when any promise is await else throwing error massage.
     // What do await - Wait / Stop the code whenever all the code running perfectly else it will trow the error. 
     // If there are error, return Bad request and error.
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success, errors: errors.array() });
     }
 
     // Check whether the user with this email exist already.
     try {
-        let user = await User.findOne({ email: req.body.email })
+        let user = await User.findOne({ success, email: req.body.email })
 
         if (user) {
-            return res.status(400).json({ error: "Sorry a user with this email already exists" })
+            return res.status(400).json({ success, error: "Sorry a user with this email already exists" })
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -47,8 +48,8 @@ router.post('/createuser', [
 
         const authToken = jwt.sign(data, JWT_SECRET)
         // console.log(authToken)
-
-        res.json({ authToken })
+        success = true
+        res.json({ success, authToken })
         // Catch the error
     } catch (error) {
         // console.error(error.massage)
