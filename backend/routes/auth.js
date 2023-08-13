@@ -63,7 +63,7 @@ router.post('/login', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
-
+    let success = false;
     // If there are errors, return Bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -76,13 +76,15 @@ router.post('/login', [
         // Get the email from the database and check this email is present or not.
         let user = await User.findOne({ email });
         if (!user) {
+            success = false;
             return res.status(400).json({ error: "Please try to login with correct credentials" });
         }
 
         // It is compare the password which is entered the user to the database
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            success = false;
+            return res.status(400).json({ success, error: "Please try to login with correct credentials" });
         }
 
         // I have used to check id is present or not in our database if yes return login otherwise Not.
@@ -92,7 +94,8 @@ router.post('/login', [
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET);
-        res.json({ authtoken })
+        success = true
+        res.json({ success, authtoken })
 
         // In case email or password incorrect then catch block will be executes. 
     } catch (error) {

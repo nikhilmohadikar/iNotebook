@@ -5,6 +5,8 @@ import Home from './componant/Home';
 import About from './componant/About';
 import NoteContext from './context/notes/NodeState';
 import Alert from './componant/Alert';
+import Login from './componant/Login';
+import Signup from './componant/Signup';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/about' element={<About />}></Route>
+              <Route exact path='/login' element={<Login />}></Route>
+              <Route exact path='/signup' element={<Signup />}></Route>
             </Routes>
           </div>
         </BrowserRouter>
