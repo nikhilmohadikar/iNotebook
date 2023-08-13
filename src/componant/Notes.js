@@ -27,6 +27,7 @@ const Notes = (props) => {
     const handleClick = () => {
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
+        props.showAlert("Updated Successfully", "success")
     }
 
     return (
@@ -76,7 +77,7 @@ const Notes = (props) => {
                         </div>
                         <div className="row row-cols-1 row-cols-md-4 g-4 my-2">
                             {notes.map((note) => {
-                                return <Noteitem key={note._id} updateNote={updateNote} note={note} />
+                                return <Noteitem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />
                             })}
                         </div>
                     </div>
