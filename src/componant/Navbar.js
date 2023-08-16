@@ -1,9 +1,15 @@
 // rafce
 
 import React from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const handleLogout = (() => {
+        localStorage.removeItem('token');
+        navigate("/login");
+    })
+
     let location = useLocation();
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
@@ -22,10 +28,10 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="d-grid gap-2 mx-3 d-md-flex justify-content-md-end">
+                {!localStorage.getItem('token') ? <div className="d-grid gap-2 mx-3 d-md-flex justify-content-md-end">
                     <Link className="btn btn-outline-primary mx-1" to="/login" role='button'>Login</Link>
                     <Link className="btn btn-outline-primary mx-1" to="/signup" role='button'>Signup</Link>
-                </div>
+                </div> : <button onClick={handleLogout} className="btn btn-outline-primary mx-1">Logout</button>}
             </div>
         </nav>
     )
