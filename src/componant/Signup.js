@@ -21,7 +21,7 @@ const Signup = (props) => {
         if (json.success) {
             // save the auth token and redirect
             localStorage.setItem('token', json.authtoken)
-            navigate("/")
+            navigate("/login")
             props.showAlert("Signup Successfully", "success")
         }
         else {
